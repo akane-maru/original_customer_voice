@@ -49,6 +49,17 @@ public enum AttributeConst {
     VOI_TITLE("title"),
     VOI_CONTENT("content_msg"),
 
+    //従業員管理
+    EMPLOYEE("employee"),
+    EMPLOYEES("employees"),
+    EMP_COUNT("employees_count"),
+    EMP_ID("id"),
+    EMP_CODE("code"),
+    EMP_PASS("password"),
+    EMP_NAME("name"),
+    EMP_ADMIN_FLG("admin_flag");
+
+
     private final String text;
     private final Integer i;
 

@@ -10,6 +10,7 @@ public enum ForwardConst {
     ACT_TOP("Top"),
     ACT_CUS("Customer"),
     ACT_VOI("Voice"),
+    ACT_EMP("Employee"),
     ACT_AUTH("Auth"),
 
     //command
@@ -38,6 +39,10 @@ public enum ForwardConst {
     FW_VOI_SHOW("voices/show"),
     FW_VOI_NEW("voices/new"),
     FW_VOI_EDIT("voices/edit"),
+    FW_EMP_INDEX("employees/index"),
+    FW_EMP_SHOW("employees/show"),
+    FW_EMP_NEW("employees/new"),
+    FW_EMP_EDIT("employees/edit");
 
     /**
      * 文字列
