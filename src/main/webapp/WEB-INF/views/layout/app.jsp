@@ -25,10 +25,12 @@
             <div id="header_menu">
                 <h1><a href="<c:url value='/?action=${actTop}&command=${commIdx}' />">お客様の声　記録サイト</a></h1>&nbsp;&nbsp;&nbsp;
                 <c:if test="${sessionScope.login_customer != null}">
-                    <c:if test="${sessionScope.login_customer.adminFlag == AttributeConst.ROLE_ADMIN.getIntegerValue()}">
-                        <a href="<c:url value='?action=${actCus}&command=${commIdx}' />">お客様のアカウント管理</a>&nbsp;
+                    <c:if test="${sessionScope.login_customer.deleteFlag == AttributeConst.DEL_FLAG_FALSE.getIntegerValue()}">
+
+                        <a href="<c:url value='?action=${actCus}&command=${commShow}&id=${customer.id}' />">アカウント管理</a>&nbsp;
+
                     </c:if>
-                    <a href="<c:url value='?action=${actVoi}&command=${commIdx}' />">お客様の声</a>&nbsp;
+                    <a href="<c:url value='?action=${actVoi}&command=${commIdx}' />">投稿した声 一覧</a>&nbsp;
                 </c:if>
             </div>
             <c:if test="${sessionScope.login_customer != null}">

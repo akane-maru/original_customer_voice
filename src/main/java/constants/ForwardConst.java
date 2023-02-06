@@ -38,7 +38,7 @@ public enum ForwardConst {
     FW_VOI_INDEX("voices/index"),
     FW_VOI_SHOW("voices/show"),
     FW_VOI_NEW("voices/new"),
-    FW_VOI_EDIT("voices/edit"),
+    //FW_VOI_EDIT("voices/edit"),//編集機能は使用しない
     FW_EMP_INDEX("employees/index"),
     FW_EMP_SHOW("employees/show"),
     FW_EMP_NEW("employees/new"),

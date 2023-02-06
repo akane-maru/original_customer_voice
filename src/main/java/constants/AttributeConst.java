@@ -17,7 +17,7 @@ public enum AttributeConst {
     ERR("errors"),
 
     //ログイン中のお客様
-    LOGIN_EMP("login_customer"),
+    LOGIN_CUS("login_customer"),
 
     //ログイン画面
     LOGIN_ERR("loginError"),
@@ -30,11 +30,13 @@ public enum AttributeConst {
     CUS_CODE("code"),
     CUS_PASS("password"),
     CUS_NAME("name"),
-    CUS_ADMIN_FLG("admin_flag"),
+    CUS_AGE("age"),
+    CUS_GENDER("gender"),
+    //CUS_ADMIN_FLG("admin_flag"),//お客様は自分のアカウントを管理できる
 
-    //管理者フラグ
-    ROLE_ADMIN(1),
-    ROLE_GENERAL(0),
+    //管理者フラグはお客様、従業員どちらも使用しない
+    //ROLE_ADMIN(1),
+    //ROLE_GENERAL(0),
 
     //削除フラグ
     DEL_FLAG_TRUE(1),
@@ -56,8 +58,8 @@ public enum AttributeConst {
     EMP_ID("id"),
     EMP_CODE("code"),
     EMP_PASS("password"),
-    EMP_NAME("name"),
-    EMP_ADMIN_FLG("admin_flag");
+    EMP_NAME("name");
+    //EMP_ADMIN_FLG("admin_flag");//回答担当の従業員アカウントは管理者と一般に分けず使用する
 
 
     private final String text;

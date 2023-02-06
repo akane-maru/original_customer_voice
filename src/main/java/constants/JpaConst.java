@@ -21,13 +21,13 @@ public interface JpaConst {
     String CUS_COL_AGE = "age"; //年齢
     String CUS_COL_GEN = "gender"; //性別
     String CUS_COL_PASS = "password"; //パスワード
-    String CUS_COL_ADMIN_FLAG = "admin_flag"; //管理者権限
+    //String CUS_COL_ADMIN_FLAG = "admin_flag"; //管理者権限は使用しない
     String CUS_COL_CREATED_AT = "created_at"; //登録日時
     String CUS_COL_UPDATED_AT = "updated_at"; //更新日時
     String CUS_COL_DELETE_FLAG = "delete_flag"; //削除フラグ
 
-    int ROLE_ADMIN = 1; //管理者権限ON(管理者)
-    int ROLE_GENERAL = 0; //管理者権限OFF(一般)
+    //int ROLE_ADMIN = 1; //管理者権限ON(管理者)は使用しない
+    //int ROLE_GENERAL = 0; //管理者権限OFF(一般)は使用しない
     int CUS_DEL_TRUE = 1; //削除フラグON(削除済み)
     int CUS_DEL_FALSE = 0; //削除フラグOFF(現役)
 
@@ -36,11 +36,11 @@ public interface JpaConst {
     //お客様の声テーブルカラム
     String VOI_COL_ID = "id"; //id
     String VOI_COL_CUS = "customer_id"; //日報を作成したお客様のid
-    String VOI_COL_REP_DATE = "voice_date"; //いつのお客様の声かを示す日付
+    String VOI_COL_VOI_DATE = "voice_date"; //いつのお客様の声かを示す日付
     String VOI_COL_TITLE = "title"; //お客様の声のタイトル
     String VOI_COL_CONTENT = "content"; //お客様の声の内容
     String VOI_COL_CREATED_AT = "created_at"; //登録日時
-    String VOI_COL_UPDATED_AT = "updated_at"; //更新日時
+    //String VOI_COL_UPDATED_AT = "updated_at"; //更新日時は使用しない
 
     //従業員テーブル
     String TABLE_EMP = "employees"; //テーブル名
@@ -49,10 +49,10 @@ public interface JpaConst {
     String EMP_COL_CODE = "code"; //社員番号
     String EMP_COL_NAME = "name"; //氏名
     String EMP_COL_PASS = "password"; //パスワード
-    String EMP_COL_ADMIN_FLAG = "admin_flag"; //管理者権限
+    //String EMP_COL_ADMIN_FLAG = "admin_flag"; //管理者権限は使用しない
     String EMP_COL_CREATED_AT = "created_at"; //登録日時
     String EMP_COL_UPDATED_AT = "updated_at"; //更新日時
-    String EMP_COL_DELETE_FLAG = "delete_flag"; //削除フラグ
+    //String EMP_COL_DELETE_FLAG = "delete_flag"; //削除フラグは従業員アカウント削除はしないため使用しない
 
     //Entity名
     String ENTITY_CUS = "customer"; //お客様

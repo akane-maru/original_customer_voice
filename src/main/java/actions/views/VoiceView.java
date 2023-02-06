@@ -1,5 +1,6 @@
 package actions.views;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
@@ -8,58 +9,47 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * お客様情報について画面の入力値・出力値を扱うViewモデル
+ * お客様の声情報について画面の入力値・出力値を扱うViewモデル
  *
  */
 @Getter //全てのクラスフィールドについてgetterを自動生成する(Lombok)
 @Setter //全てのクラスフィールドについてsetterを自動生成する(Lombok)
 @NoArgsConstructor //引数なしコンストラクタを自動生成する(Lombok)
 @AllArgsConstructor //全てのクラスフィールドを引数にもつ引数ありコンストラクタを自動生成する(Lombok)
-public class CustomerView {
+public class VoiceView {
+
     /**
      * id
      */
     private Integer id;
 
     /**
-     * お客様番号
+     * 声を登録したお客様
      */
-    private String code;
+    private CustomerView customer;
 
     /**
-     * 氏名
+     * いつの声かを示す日付
      */
-    private String name;
-
-    //年齢
-    private String age;
-
-    //性別
-    private String gender;
+    private LocalDate reportDate;
 
     /**
-     * パスワード
+     * 声のタイトル
      */
-    private String password;
+    private String title;
 
     /**
-     * 管理者権限があるかどうか（一般：0、管理者：1）は使用しない
+     * 声の内容
      */
-    //private Integer adminFlag;
+    private String content;
 
     /**
-     *登録日時
+     * 登録日時
      */
     private LocalDateTime createdAt;
 
     /**
      * 更新日時
      */
-    private LocalDateTime updatedAt;
-
-    /**
-     * 削除された従業員かどうか（現役：0、削除済み：1）
-     */
-    private Integer deleteFlag;
-
+    //private LocalDateTime updatedAt;
 }
