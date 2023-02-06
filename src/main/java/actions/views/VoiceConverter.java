@@ -20,7 +20,7 @@ public class VoiceConverter {
         return new Voice(
                 vv.getId(),
                 CustomerConverter.toModel(vv.getCustomer()),
-                vv.getReportDate(),
+                vv.getVoiceDate(),
                 vv.getTitle(),
                 vv.getContent(),
                 vv.getCreatedAt());
@@ -71,7 +71,7 @@ public class VoiceConverter {
     public static void copyViewToModel(Voice v, VoiceView vv) {
         v.setId(vv.getId());
         v.setCustomer(CustomerConverter.toModel(vv.getCustomer()));
-        v.setVoiceDate(vv.getReportDate());
+        v.setVoiceDate(vv.getVoiceDate());
         v.setTitle(vv.getTitle());
         v.setContent(vv.getContent());
         v.setCreatedAt(vv.getCreatedAt());

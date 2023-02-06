@@ -15,25 +15,29 @@
                 <c:out value="${flush}"></c:out>
             </div>
         </c:if>
-        <h2>アカウント 一覧</h2>
+        <h2>アカウント 情報</h2>
         <table id="customer_list">
             <tbody>
                 <tr>
                     <th>アカウント番号</th>
                     <th>氏名</th>
-                    <th>操作</th>
+                    <th>年齢</th>
+                    <th>性別</th>
+                    <th>登録状況</th>
                 </tr>
                 <c:forEach var="customer" items="${customers}" varStatus="status">
                     <tr class="row${status.count % 2}">
                         <td><c:out value="${customer.code}" /></td>
                         <td><c:out value="${customer.name}" /></td>
+                        <td><c:out value="${customer.age}" /></td>
+                        <td><c:out value="${customer.gender}" /></td>
                         <td>
                             <c:choose>
                                 <c:when test="${customer.deleteFlag == AttributeConst.DEL_FLAG_TRUE.getIntegerValue()}">
                                     （削除済み）
                                 </c:when>
                                 <c:otherwise>
-                                    <a> <!--  href="<c:url value='?action=${actCus}&command=${commShow}&id=${customer.id}' />" --> 登録中</a>
+                                    <a href="<c:url value='?action=${actCus}&command=${commShow}&id=${customer.id}' />">登録中</a>
                                 </c:otherwise>
                             </c:choose>
                         </td>

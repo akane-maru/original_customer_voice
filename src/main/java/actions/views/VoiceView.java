@@ -31,7 +31,7 @@ public class VoiceView {
     /**
      * いつの声かを示す日付
      */
-    private LocalDate reportDate;
+    private LocalDate voiceDate;
 
     /**
      * 声のタイトル
