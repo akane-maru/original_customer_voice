@@ -5,13 +5,21 @@
 <%@ page import="constants.AttributeConst" %>
 
 <c:set var="actCus" value="${ForwardConst.ACT_CUS.getValue()}" />
+<c:set var="actTop" value="${ForwardConst.ACT_TOP.getValue()}" />
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
 <c:set var="commEdit" value="${ForwardConst.CMD_EDIT.getValue()}" />
+<c:set var="commCon" value="${ForwardConst.CMD_DESTROY_CONFORM.getValue()}" />
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
 
-        <h2>id : ${customer.id} のアカウント情報 詳細ページ</h2>
+        <c:if test="${flush != null}">
+            <div id="flush_success">
+                <c:out value="${flush}"></c:out>
+            </div>
+        </c:if>
+
+        <h2>${customer.name} さんのアカウント情報 詳細ページ</h2>
 
         <table>
             <tbody>
@@ -34,13 +42,7 @@
                     <td><c:out value="${customer.gender}" /></td>
                 </tr>
 
-                <!--  <tr>
-                    <th>権限</th>
-                    <td><c:choose>
-                            <c:when test="${customer.adminFlag == AttributeConst.ROLE_ADMIN.getIntegerValue()}">管理者</c:when>
-                            <c:otherwise>一般</c:otherwise>
-                        </c:choose></td>
-                </tr> -->
+
                 <tr>
                     <th>登録日時</th>
                     <fmt:parseDate value="${customer.createdAt}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="createDay" type="date" />
@@ -59,7 +61,12 @@
         </p>
 
         <p>
-            <a href="<c:url value='?action=${actCus}&command=${commIdx}' />">トップページへ戻る</a>
+            <a href="<c:url value='?action=${actCus}&command=${commCon}&id=${customer.id}' />">アカウント情報を削除する</a>
         </p>
+
+        <p>
+            <a href="<c:url value='?action=${actTop}&command=${commIdx}' />">トップページへ戻る</a>
+        </p>
+
     </c:param>
 </c:import>

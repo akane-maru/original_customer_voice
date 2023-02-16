@@ -61,6 +61,17 @@ public class LoginFilter implements Filter {
             if (cv == null) {
                 //未ログイン
 
+                if (ForwardConst.ACT_CUS.getValue().equals(action)
+                        && (ForwardConst.CMD_NEW.getValue().equals(command))) {
+
+                    //ログインページの表示またはログイン実行以外はログインページにリダイレクト
+                    String forward = String.format("/WEB-INF/views/%s.jsp", "login/new");
+                    RequestDispatcher dispatcher = request.getRequestDispatcher(forward);
+                    dispatcher.forward(request, response);
+
+                    return;
+                }
+
                 if (!(ForwardConst.ACT_AUTH.getValue().equals(action)
                         && (ForwardConst.CMD_SHOW_LOGIN.getValue().equals(command)
                                 || ForwardConst.CMD_LOGIN.getValue().equals(command)))) {

@@ -43,9 +43,9 @@ public class CustomerView {
     private String password;
 
     /**
-     * 管理者権限があるかどうか（一般：0、管理者：1）は使用しない
+     * 管理者権限があるかどうか（一般：0、従業員：1）
      */
-    //private Integer adminFlag;
+    private Integer adminFlag;
 
     /**
      *登録日時

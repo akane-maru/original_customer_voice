@@ -26,11 +26,11 @@ public class CustomerConverter {
                 cv.getAge(),
                 cv.getGender(),
                 cv.getPassword(),
-                //cv.getAdminFlag() == null
-                        //? null
-                        //: cv.getAdminFlag() == AttributeConst.ROLE_ADMIN.getIntegerValue()
-                                //? JpaConst.ROLE_ADMIN
-                                //: JpaConst.ROLE_GENERAL,
+                cv.getAdminFlag() == null
+                        ? null
+                        : cv.getAdminFlag() == AttributeConst.ROLE_ADMIN.getIntegerValue()
+                                ? JpaConst.ROLE_ADMIN
+                                : JpaConst.ROLE_GENERAL,
                 cv.getCreatedAt(),
                 cv.getUpdatedAt(),
                 cv.getDeleteFlag() == null
@@ -58,11 +58,11 @@ public class CustomerConverter {
                 c.getAge(),
                 c.getGender(),
                 c.getPassword(),
-                //c.getAdminFlag() == null
-                        //? null
-                        //: c.getAdminFlag() == JpaConst.ROLE_ADMIN
-                                //? AttributeConst.ROLE_ADMIN.getIntegerValue()
-                                //: AttributeConst.ROLE_GENERAL.getIntegerValue(),
+                c.getAdminFlag() == null
+                        ? null
+                        : c.getAdminFlag() == JpaConst.ROLE_ADMIN
+                                ? AttributeConst.ROLE_ADMIN.getIntegerValue()
+                                : AttributeConst.ROLE_GENERAL.getIntegerValue(),
                 c.getCreatedAt(),
                 c.getUpdatedAt(),
                 c.getDeleteFlag() == null
@@ -99,7 +99,7 @@ public class CustomerConverter {
         c.setAge(cv.getAge());
         c.setGender(cv.getGender());
         c.setPassword(cv.getPassword());
-        //c.setAdminFlag(cv.getAdminFlag());
+        c.setAdminFlag(cv.getAdminFlag());
         c.setCreatedAt(cv.getCreatedAt());
         c.setUpdatedAt(cv.getUpdatedAt());
         c.setDeleteFlag(cv.getDeleteFlag());

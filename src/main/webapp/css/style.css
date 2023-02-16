@@ -140,19 +140,27 @@ table#voice_list th {
 }
 
 table#voice_list .voice_name {
-    width: 20%;
+    width: 17%;
     padding: 10px 2%;
 }
 table#voice_list .voice_date {
-    width: 20%;
+    width: 17%;
+}
+
+table#voice_list .voice_age {
+    width: 10%;
+}
+
+table#voice_list .voice_gender {
+    width: 10%;
 }
 
 table#voice_list .voice_title {
-    width: 37%;
+    width: 34%;
 }
 
 table#voice_list .voice_action {
-    width: 13%;
+    width: 12%;
 }
 
 pre {

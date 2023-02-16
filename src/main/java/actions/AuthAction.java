@@ -61,8 +61,8 @@ public class AuthAction extends ActionBase {
      */
     public void login() throws ServletException, IOException {
 
-        String code = getRequestParam(AttributeConst.EMP_CODE);
-        String plainPass = getRequestParam(AttributeConst.EMP_PASS);
+        String code = getRequestParam(AttributeConst.CUS_CODE);
+        String plainPass = getRequestParam(AttributeConst.CUS_PASS);
         String pepper = getContextScope(PropertyConst.PEPPER);
 
         //有効な従業員か認証する
@@ -91,7 +91,7 @@ public class AuthAction extends ActionBase {
             //認証失敗エラーメッセージ表示フラグをたてる
             putRequestScope(AttributeConst.LOGIN_ERR, true);
             //入力された従業員コードを設定
-            putRequestScope(AttributeConst.EMP_CODE, code);
+            putRequestScope(AttributeConst.CUS_CODE, code);
 
             //ログイン画面を表示
             forward(ForwardConst.FW_LOGIN);

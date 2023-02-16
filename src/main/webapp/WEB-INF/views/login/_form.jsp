@@ -3,8 +3,11 @@
 <%@ page import="constants.AttributeConst" %>
 <%@ page import="constants.ForwardConst" %>
 
-<c:set var="action" value="${ForwardConst.ACT_CUS.getValue()}" />
+<c:set var="actCus" value="${ForwardConst.ACT_CUS.getValue()}" />
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
+<c:set var="commCrt" value="${ForwardConst.CMD_CREATE.getValue()}" />
+<c:set var="command" value="${ForwardConst.CMD_LOGIN.getValue()}" />
+
 
 <c:if test="${errors != null}">
     <div id="flush_error">

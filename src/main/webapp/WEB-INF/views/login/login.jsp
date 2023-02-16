@@ -5,6 +5,8 @@
 
 <c:set var="action" value="${ForwardConst.ACT_AUTH.getValue()}" />
 <c:set var="command" value="${ForwardConst.CMD_LOGIN.getValue()}" />
+<c:set var="commNew" value="${ForwardConst.CMD_NEW.getValue()}" />
+<c:set var="actCus" value="${ForwardConst.ACT_CUS.getValue()}" />
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
@@ -31,5 +33,10 @@
             <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
             <button type="submit">ログイン</button>
         </form>
+
+        <p>
+            <a href="<c:url value='/?action=${actCus}&command=${commNew}' />">新規アカウントを作成する</a>
+        </p>
+
     </c:param>
 </c:import>

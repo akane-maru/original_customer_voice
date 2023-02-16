@@ -18,23 +18,27 @@
                 <c:out value="${flush}"></c:out>
             </div>
         </c:if>
-        <h2>お客様の声　登録サイトへようこそ</h2>
-        <h3>【自分の声　一覧】</h3>
+        <h2>今までに投稿されたお客様の声</h2>
+        <h3>【皆様の声　一覧】</h3>
         <table id="voice_list">
             <tbody>
                 <tr>
                     <th class="voice_name">氏名</th>
                     <th class="voice_date">日付</th>
+                    <th class="voice_age">年齢</th>
+                    <th class="voice_gender">性別</th>
                     <th class="voice_title">タイトル</th>
                     <th class="voice_action">操作</th>
                 </tr>
-                <c:forEach var="voice" items="${voices}" varStatus="status">
+                <c:forEach var="voice" items="${voice}" varStatus="status">
                     <fmt:parseDate value="${voice.voiceDate}" pattern="yyyy-MM-dd" var="voiceDay" type="date" />
                     <tr class="row${status.count % 2}">
                         <td class="voice_name"><c:out value="${voice.customer.name}" /></td>
                         <td class="voice_date"><fmt:formatDate value='${voiceDay}' pattern='yyyy-MM-dd' /></td>
+                        <td class="voice_age"><c:out value="${voice.customer.age}" /></td>
+                        <td class="voice_gender"><c:out value="${voice.customer.gender}" /></td>
                         <td class="voice_title">${voice.title}</td>
-                        <td class="voice_action"><a href="<c:url value='?action=${actVoi}&command=${commShow}&id=${voice.id}' />">詳細を見る</a></td>
+                        <td class="voice_action"><a href="<c:url value='?action=${actVoi}&command=${commShow}&id=${voice.id}' />">内容を見る</a></td>
                     </tr>
                 </c:forEach>
             </tbody>
@@ -53,6 +57,6 @@
                 </c:choose>
             </c:forEach>
         </div>
-        <p><a href="<c:url value='?action=${actVoi}&command=${commNew}' />">新規お客様の声登録</a></p>
+        <p><a href="<c:url value='?action=${actVoi}&command=${commNew}' />">新規の声を投稿する</a></p>
     </c:param>
 </c:import>

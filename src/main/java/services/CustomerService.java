@@ -22,7 +22,7 @@ public class CustomerService extends ServiceBase {
      * @return 表示するデータのリスト
      */
     public List<CustomerView> getPerPage(int page) {
-        List<Customer> customers = em.createNamedQuery(JpaConst.Q_EMP_GET_ALL, Customer.class)
+        List<Customer> customers = em.createNamedQuery(JpaConst.Q_CUS_GET_ALL, Customer.class)
                 .setFirstResult(JpaConst.ROW_PER_PAGE * (page - 1))
                 .setMaxResults(JpaConst.ROW_PER_PAGE)
                 .getResultList();
@@ -152,7 +152,10 @@ public class CustomerService extends ServiceBase {
                     EncryptUtil.getPasswordEncrypt(cv.getPassword(), pepper));
         }
 
-        savedCus.setName(cv.getName()); //変更後の氏名を設定する
+        savedCus.setName(cv.getName());//変更後の氏名を設定する
+        savedCus.setAge(cv.getAge());
+        savedCus.setGender(cv.getGender());
+
         //savedCus.setAdminFlag(cv.getAdminFlag()); //変更後の管理者フラグを設定するは使用しない
 
         //更新日時に現在時刻を設定する

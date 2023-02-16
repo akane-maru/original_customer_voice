@@ -7,6 +7,7 @@
 <c:set var="commShow" value="${ForwardConst.CMD_SHOW.getValue()}" />
 <c:set var="commNew" value="${ForwardConst.CMD_NEW.getValue()}" />
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
+<c:set var="commEdit" value="${ForwardConst.CMD_EDIT.getValue()}" />
 
 <c:import url="../layout/app.jsp">
     <c:param name="content">
@@ -15,7 +16,7 @@
                 <c:out value="${flush}"></c:out>
             </div>
         </c:if>
-        <h2>アカウント 情報</h2>
+        <h2>アカウント情報</h2>
         <table id="customer_list">
             <tbody>
                 <tr>
@@ -23,7 +24,7 @@
                     <th>氏名</th>
                     <th>年齢</th>
                     <th>性別</th>
-                    <th>登録状況</th>
+                    <th>操作</th>
                 </tr>
                 <c:forEach var="customer" items="${customers}" varStatus="status">
                     <tr class="row${status.count % 2}">
@@ -37,7 +38,7 @@
                                     （削除済み）
                                 </c:when>
                                 <c:otherwise>
-                                    <a href="<c:url value='?action=${actCus}&command=${commShow}&id=${customer.id}' />">登録中</a>
+                                    <a href="<c:url value='?action=${actCus}&command=${commShow}&id=${customer.id}' />">詳細を見る</a>
                                 </c:otherwise>
                             </c:choose>
                         </td>
@@ -46,20 +47,11 @@
             </tbody>
         </table>
 
-        <div id="pagination">
-            （全 ${customers_count} 件）<br />
-            <c:forEach var="i" begin="1" end="${((customers_count - 1) / maxRow) + 1}" step="1">
-                <c:choose>
-                    <c:when test="${i == page}">
-                        <c:out value="${i}" />&nbsp;
-                    </c:when>
-                    <c:otherwise>
-                        <a href="<c:url value='?action=${actCus}&command=${commIdx}&page=${i}' />"><c:out value="${i}" /></a>&nbsp;
-                    </c:otherwise>
-                </c:choose>
-            </c:forEach>
-        </div>
-        <!--  <p><a href="<c:url value='?action=${actCus}&command=${commNew}' />">新規アカウントの登録</a></p> -->
+
+        <p>
+            <a href="<c:url value='?action=${actCus}&command=${commEdit}&id=${customer.id}' />">このアカウント情報を編集する</a>
+        </p>
+
 
     </c:param>
 </c:import>

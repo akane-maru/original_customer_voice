@@ -42,8 +42,8 @@ public class CustomerAction extends ActionBase {
      */
     public void index() throws ServletException, IOException {
 
-        //管理者かどうかのチェックは使用しない
-        //if (checkAdmin()) {
+        //管理者かどうかのチェック
+        if (checkAdmin()) {
 
         //指定されたページ数の一覧画面に表示するデータを取得
         int page = getPage();
@@ -69,7 +69,7 @@ public class CustomerAction extends ActionBase {
 
       }
 
-    //}
+    }
 
     /**
      * 新規登録画面を表示する
@@ -78,9 +78,10 @@ public class CustomerAction extends ActionBase {
      */
     public void entryNew() throws ServletException, IOException  {
 
-        //管理者かどうかのチェックは使用しない
+        //管理者かどうかのチェック
         //if (checkAdmin()) {
 
+       System.out.println("reply");
         putRequestScope(AttributeConst.TOKEN, getTokenId()); //CSRF対策用トークン
         putRequestScope(AttributeConst.CUSTOMER, new CustomerView()); //空のお客様インスタンス
 
@@ -100,6 +101,7 @@ public class CustomerAction extends ActionBase {
         //CSRF対策 tokenのチェック
         //if (checkAdmin() && checkToken()) {
 
+        System.out.println("!!!!!!!!!!!!!!");
             //パラメータの値を元にお客様情報のインスタンスを作成する
             CustomerView cv = new CustomerView(
                     null,
@@ -108,7 +110,7 @@ public class CustomerAction extends ActionBase {
                     getRequestParam(AttributeConst.CUS_AGE),
                     getRequestParam(AttributeConst.CUS_GENDER),
                     getRequestParam(AttributeConst.CUS_PASS),
-                    //toNumber(getRequestParam(AttributeConst.CUS_ADMIN_FLG)),使用しない
+                    AttributeConst.ROLE_GENERAL.getIntegerValue(),
                     null,
                     null,
                     AttributeConst.DEL_FLAG_FALSE.getIntegerValue());
@@ -133,7 +135,7 @@ public class CustomerAction extends ActionBase {
                 //登録中にエラーがなかった場合
 
                 //セッションに登録完了のフラッシュメッセージを設定
-                putSessionScope(AttributeConst.FLUSH, MessageConst.I_REGISTERED.getMessage());
+                putSessionScope(AttributeConst.FLUSH, MessageConst.I_REGISTERED_NEW.getMessage());
 
                 //一覧画面にリダイレクト
                 redirect(ForwardConst.ACT_CUS, ForwardConst.CMD_INDEX);
@@ -149,8 +151,8 @@ public class CustomerAction extends ActionBase {
      */
     public void show() throws ServletException, IOException {
 
-        //管理者かどうかのチェックは使用しない
-        //if (checkAdmin()) {
+        //管理者かどうかのチェック
+        if (checkAdmin()) {
 
         //idを条件にお客様データを取得する
         CustomerView cv = service.findOne(toNumber(getRequestParam(AttributeConst.CUS_ID)));
@@ -168,7 +170,7 @@ public class CustomerAction extends ActionBase {
         forward(ForwardConst.FW_CUS_SHOW);
       }
 
-    //}
+    }
 
     /**
      * 編集画面を表示する
@@ -177,8 +179,8 @@ public class CustomerAction extends ActionBase {
      */
     public void edit() throws ServletException, IOException {
 
-        //管理者かどうかのチェックは使用しないは使用しない
-        //if (checkAdmin()) {
+        //管理者かどうかのチェック
+        if (checkAdmin()) {
 
         //idを条件にお客様データを取得する
         CustomerView cv = service.findOne(toNumber(getRequestParam(AttributeConst.CUS_ID)));
@@ -198,7 +200,7 @@ public class CustomerAction extends ActionBase {
 
       }
 
-    //}
+    }
 
     /**
      * 更新を行う
@@ -208,7 +210,7 @@ public class CustomerAction extends ActionBase {
     public void update() throws ServletException, IOException {
 
         //CSRF対策 tokenのチェック
-        //if (checkAdmin() && checkToken()) {
+        if (checkAdmin() && checkToken()) {
             //パラメータの値を元にお客様情報のインスタンスを作成する
             CustomerView cv = new CustomerView(
                     toNumber(getRequestParam(AttributeConst.CUS_ID)),
@@ -217,7 +219,7 @@ public class CustomerAction extends ActionBase {
                     getRequestParam(AttributeConst.CUS_AGE),
                     getRequestParam(AttributeConst.CUS_GENDER),
                     getRequestParam(AttributeConst.CUS_PASS),
-                    //toNumber(getRequestParam(AttributeConst.CUS_ADMIN_FLG)),
+                    toNumber(getRequestParam(AttributeConst.CUS_ADMIN_FLG)),
                     null,
                     null,
                     AttributeConst.DEL_FLAG_FALSE.getIntegerValue());
@@ -243,11 +245,32 @@ public class CustomerAction extends ActionBase {
                 //セッションに更新完了のフラッシュメッセージを設定
                 putSessionScope(AttributeConst.FLUSH, MessageConst.I_UPDATED.getMessage());
 
+
+              //管理者かどうかのチェック
+                if (checkAdmin()) {
+
+                //idを条件にお客様データを取得する
+                CustomerView scv = service.findOne(toNumber(getRequestParam(AttributeConst.CUS_ID)));
+
+                if (scv == null || scv.getDeleteFlag() == AttributeConst.DEL_FLAG_TRUE.getIntegerValue()) {
+
+                    //データが取得できなかった、または論理削除されている場合はエラー画面を表示
+                    forward(ForwardConst.FW_ERR_UNKNOWN);
+                    return;
+                }
+
+                putRequestScope(AttributeConst.CUSTOMER, scv); //取得したお客様情報
+
+
+                //詳細画面を表示
+                forward(ForwardConst.FW_CUS_SHOW);
+
                 //一覧画面にリダイレクト
-                redirect(ForwardConst.ACT_CUS, ForwardConst.CMD_INDEX);
+                //redirect(ForwardConst.ACT_CUS, ForwardConst.FW_CUS_SHOW);
+                }
             }
         }
-    //}
+    }
 
     /**
      * 論理削除を行う
@@ -257,7 +280,7 @@ public class CustomerAction extends ActionBase {
     public void destroy() throws ServletException, IOException {
 
         //CSRF対策 tokenのチェック
-        //if (checkAdmin() && checkToken()) {
+        if (checkAdmin() && checkToken()) {
 
             //idを条件にお客様データを論理削除する
             service.destroy(toNumber(getRequestParam(AttributeConst.CUS_ID)));
@@ -268,30 +291,59 @@ public class CustomerAction extends ActionBase {
             //一覧画面にリダイレクト
             redirect(ForwardConst.ACT_CUS, ForwardConst.CMD_INDEX);
         }
-    //}
+    }
 
     /**
-     * ログイン中のお客様が管理者かどうかチェックし、管理者でなければエラー画面を表示は使用しない
+     * ログイン中のお客様が管理者かどうかチェックし、管理者でなければエラー画面を表示
      * true: 管理者 false: 管理者ではない
      * @throws ServletException
      * @throws IOException
      */
-    //private boolean checkAdmin() throws ServletException, IOException {
+    private boolean checkAdmin() throws ServletException, IOException {
 
         //セッションからログイン中のお客様情報を取得
-        //CustomerView cv = (CustomerView) getSessionScope(AttributeConst.LOGIN_CUS);
+        CustomerView cv = (CustomerView) getSessionScope(AttributeConst.LOGIN_CUS);
 
         //管理者でなければエラー画面を表示
-        //if (cv.getAdminFlag() != AttributeConst.ROLE_ADMIN.getIntegerValue()) {
+        if (cv.getAdminFlag() != AttributeConst.ROLE_ADMIN.getIntegerValue()) {
 
-           //forward(ForwardConst.FW_ERR_UNKNOWN);
-            //return false;
+           forward(ForwardConst.FW_ERR_UNKNOWN);
+            return false;
 
-        //} else {
+        } else {
 
-            //return true;
-        //}
+            return true;
+        }
 
-    //}
+    }
+
+    /**
+     * 削除画面を表示する
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void destroyConform() throws ServletException, IOException {
+
+        //管理者かどうかのチェック
+        if (checkAdmin()) {
+
+        //idを条件にお客様データを取得する
+        CustomerView cv = service.findOne(toNumber(getRequestParam(AttributeConst.CUS_ID)));
+
+        if (cv == null || cv.getDeleteFlag() == AttributeConst.DEL_FLAG_TRUE.getIntegerValue()) {
+
+            //データが取得できなかった、または論理削除されている場合はエラー画面を表示
+            forward(ForwardConst.FW_ERR_UNKNOWN);
+            return;
+        }
+
+        putRequestScope(AttributeConst.CUSTOMER, cv); //取得したお客様情報
+
+        //詳細画面を表示
+        forward(ForwardConst.FW_DESTROY_CONFORM);
+      }
+
+    }
+
 
 }

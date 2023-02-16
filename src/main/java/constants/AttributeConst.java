@@ -32,11 +32,11 @@ public enum AttributeConst {
     CUS_NAME("name"),
     CUS_AGE("age"),
     CUS_GENDER("gender"),
-    //CUS_ADMIN_FLG("admin_flag"),//お客様は自分のアカウントを管理できる
+    CUS_ADMIN_FLG("admin_flag"),//お客様は自分のアカウントを管理できる
 
-    //管理者フラグはお客様、従業員どちらも使用しない
-    //ROLE_ADMIN(1),
-    //ROLE_GENERAL(0),
+    //管理者フラグはお客様は０、従業員は１
+    ROLE_ADMIN(1),
+    ROLE_GENERAL(0),
 
     //削除フラグ
     DEL_FLAG_TRUE(1),
@@ -51,15 +51,14 @@ public enum AttributeConst {
     VOI_TITLE("title"),
     VOI_CONTENT("content_msg"),
 
-    //従業員管理
-    EMPLOYEE("employee"),
-    EMPLOYEES("employees"),
-    EMP_COUNT("employees_count"),
-    EMP_ID("id"),
-    EMP_CODE("code"),
-    EMP_PASS("password"),
-    EMP_NAME("name");
-    //EMP_ADMIN_FLG("admin_flag");//回答担当の従業員アカウントは管理者と一般に分けず使用する
+    //返信管理
+    REPLY("reply"),
+    REPLYS("replys"),
+    REP_COUNT("replys_count"),
+    REP_ID("id"),
+    REP_DATE("reply_date"),
+    REP_TITLE("title"),
+    REP_CONTENT("content_rep");
 
 
     private final String text;
