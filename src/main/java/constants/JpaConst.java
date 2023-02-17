@@ -90,20 +90,20 @@ public interface JpaConst {
     String Q_VOI_GET_ALL_MINE = ENTITY_VOI + ".getAllMine";
     String Q_VOI_GET_ALL_MINE_DEF = "SELECT r FROM Voice AS r WHERE r.customer = :" + JPQL_PARM_CUSTOMER + " ORDER BY r.id DESC";
     //指定したお客様が作成したお客様の声の件数を取得する
-    String Q_VOI_COUNT_ALL_MINE = ENTITY_CUS + ".countAllMine";
+    String Q_VOI_COUNT_ALL_MINE = ENTITY_VOI + ".countAllMine";
     String Q_VOI_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Voice AS r WHERE r.customer = :" + JPQL_PARM_CUSTOMER;
 
     //全ての返信をidの降順に取得する
-    String Q_REP_GET_ALL = ENTITY_VOI + ".getAll";
+    String Q_REP_GET_ALL = ENTITY_REP + ".getAll";
     String Q_REP_GET_ALL_DEF = "SELECT r FROM Reply AS r ORDER BY r.id DESC";
     //全ての返信の件数を取得する
-    String Q_REP_COUNT = ENTITY_VOI + ".count";
+    String Q_REP_COUNT = ENTITY_REP + ".count";
     String Q_REP_COUNT_DEF = "SELECT COUNT(r) FROM Reply AS r";
     //指定した従業員が作成した返信を全件idの降順で取得する
-    String Q_REP_GET_ALL_MINE = ENTITY_VOI + ".getAllMine";
+    String Q_REP_GET_ALL_MINE = ENTITY_REP + ".getAllMine";
     String Q_REP_GET_ALL_MINE_DEF = "SELECT r FROM Reply AS r WHERE r.customer = :" + JPQL_PARM_CUSTOMER + " ORDER BY r.id DESC";
     //指定した従業員が作成した返信の件数を取得する
-    String Q_REP_COUNT_ALL_MINE = ENTITY_CUS + ".countAllMine";
+    String Q_REP_COUNT_ALL_MINE = ENTITY_REP + ".countAllMine";
     String Q_REP_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Reply AS r WHERE r.customer = :" + JPQL_PARM_CUSTOMER;
 
 }

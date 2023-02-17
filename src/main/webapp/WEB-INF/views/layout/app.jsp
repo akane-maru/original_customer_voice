@@ -6,6 +6,7 @@
 <c:set var="actTop" value="${ForwardConst.ACT_TOP.getValue()}" />
 <c:set var="actCus" value="${ForwardConst.ACT_CUS.getValue()}" />
 <c:set var="actVoi" value="${ForwardConst.ACT_VOI.getValue()}" />
+<c:set var="actRep" value="${ForwardConst.ACT_REP.getValue()}" />
 <c:set var="actAuth" value="${ForwardConst.ACT_AUTH.getValue()}" />
 
 <c:set var="commShow" value="${ForwardConst.CMD_SHOW.getValue()}" />
@@ -29,7 +30,7 @@
                 <c:if test="${sessionScope.login_customer != null}">
 
                     <c:if test="${sessionScope.login_customer.adminFlag == AttributeConst.ROLE_ADMIN.getIntegerValue()}">
-                        <a href="<c:url value='?action=${actCus}&command=${commRep}' />">お客様の声返信履歴</a>&nbsp;
+                        <a href="<c:url value='?action=${actRep}&command=${commIdx}' />">お客様の声返信履歴</a>&nbsp;
                     </c:if>
 
                     <c:if test="${sessionScope.login_customer.deleteFlag == AttributeConst.DEL_FLAG_FALSE.getIntegerValue()}">

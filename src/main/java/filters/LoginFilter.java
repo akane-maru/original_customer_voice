@@ -72,6 +72,12 @@ public class LoginFilter implements Filter {
                     return;
                 }
 
+                if (ForwardConst.ACT_CUS.getValue().equals(action)
+                        && (ForwardConst.CMD_CREATE.getValue().equals(command))) {
+
+
+                }
+
                 if (!(ForwardConst.ACT_AUTH.getValue().equals(action)
                         && (ForwardConst.CMD_SHOW_LOGIN.getValue().equals(command)
                                 || ForwardConst.CMD_LOGIN.getValue().equals(command)))) {

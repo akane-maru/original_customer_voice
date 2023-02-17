@@ -171,3 +171,40 @@ h3 {
     font-size: larger;
 }
 
+table#reply_list th {
+    font-weight: bold;
+    padding: 10px 2%;
+}
+
+table#reply_list .reply_name {
+    width: 17%;
+    padding: 10px 2%;
+}
+table#reply_list .reply_date {
+    width: 17%;
+}
+
+table#reply_list .reply_age {
+    width: 10%;
+}
+
+table#reply_list .reply_gender {
+    width: 10%;
+}
+
+table#reply_list .reply_title {
+    width: 34%;
+}
+
+table#reply_list .reply_action {
+    width: 12%;
+}
+
+pre {
+    font-family: "Hiragino Kaku Gothic Pro",Meiryo,"MS PGothic",Helvetica,Arial,sans-serif;
+}
+
+h3 {
+    font-size: larger;
+}
+
