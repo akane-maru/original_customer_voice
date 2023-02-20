@@ -78,7 +78,7 @@ public class LoginFilter implements Filter {
 
                 }
 
-                if (!(ForwardConst.ACT_AUTH.getValue().equals(action)
+                else if (!(ForwardConst.ACT_AUTH.getValue().equals(action)
                         && (ForwardConst.CMD_SHOW_LOGIN.getValue().equals(command)
                                 || ForwardConst.CMD_LOGIN.getValue().equals(command)))) {
 

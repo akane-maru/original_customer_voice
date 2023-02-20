@@ -10,6 +10,9 @@ public enum ForwardConst {
     ACT_TOP("Top"),
     ACT_CUS("Customer"),
     ACT_VOI("Voice"),
+
+    ACT_VOI_REP("Reply"),
+
     ACT_REP("Reply"),
     ACT_AUTH("Auth"),
 
@@ -42,6 +45,7 @@ public enum ForwardConst {
     FW_VOI_INDEX("voices/index"),
     FW_VOI_SHOW("voices/show"),
     FW_VOI_NEW("voices/new"),
+
     //FW_VOI_EDIT("voices/edit"),//編集機能は使用しない
     FW_REP_INDEX("replys/index"),
     FW_REP_SHOW("replys/show"),

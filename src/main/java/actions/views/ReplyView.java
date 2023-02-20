@@ -23,6 +23,12 @@ public class ReplyView {
      */
     private Integer id;
 
+
+    /**
+     * 返信を登録した従業員
+     */
+    private VoiceView voice;
+
     /**
      * 返信を登録した従業員
      */

@@ -19,6 +19,7 @@ public class ReplyConverter {
     public static Reply toModel(ReplyView rv) {
         return new Reply(
                 rv.getId(),
+                VoiceConverter.toModel(rv.getVoice()),
                 CustomerConverter.toModel(rv.getCustomer()),
                 rv.getReplyDate(),
                 rv.getTitle(),
@@ -40,6 +41,7 @@ public class ReplyConverter {
 
         return new ReplyView(
                 r.getId(),
+                VoiceConverter.toView(r.getVoice()),
                 CustomerConverter.toView(r.getCustomer()),
                 r.getVoiceDate(),
                 r.getTitle(),
@@ -70,6 +72,7 @@ public class ReplyConverter {
      */
     public static void copyViewToModel(Reply r, ReplyView rv) {
         r.setId(rv.getId());
+        r.setVoice(VoiceConverter.toModel(rv.getVoice()));
         r.setCustomer(CustomerConverter.toModel(rv.getCustomer()));
         r.setVoiceDate(rv.getReplyDate());
         r.setTitle(rv.getTitle());

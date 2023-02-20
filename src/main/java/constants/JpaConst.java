@@ -39,7 +39,10 @@ public interface JpaConst {
     String VOI_COL_VOI_DATE = "voice_date"; //いつのお客様の声かを示す日付
     String VOI_COL_TITLE = "title"; //お客様の声のタイトル
     String VOI_COL_CONTENT = "content"; //お客様の声の内容
+
     String VOI_COL_CREATED_AT = "created_at"; //登録日時
+
+
     //String VOI_COL_UPDATED_AT = "updated_at"; //更新日時は使用しない
 
     //返信テーブル
@@ -47,6 +50,7 @@ public interface JpaConst {
 
     //返信テーブルカラム
     String REP_COL_ID = "id"; //id
+    String REP_VOI_COL_ID = "voice_id"; //id
     String REP_COL_EMP = "employee_id"; //返信を作成した従業員のid
     String REP_COL_DATE = "date"; //いつの返信かを示す日付
     String REP_COL_TITLE = "title"; //返信のタイトル
@@ -92,6 +96,7 @@ public interface JpaConst {
     //指定したお客様が作成したお客様の声の件数を取得する
     String Q_VOI_COUNT_ALL_MINE = ENTITY_VOI + ".countAllMine";
     String Q_VOI_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Voice AS r WHERE r.customer = :" + JPQL_PARM_CUSTOMER;
+
 
     //全ての返信をidの降順に取得する
     String Q_REP_GET_ALL = ENTITY_REP + ".getAll";

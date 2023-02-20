@@ -60,6 +60,15 @@ public class Reply {
      * お客様の声への返信を登録した従業員
      */
     @ManyToOne
+    @JoinColumn(name = JpaConst.REP_VOI_COL_ID, nullable = false)
+    private Voice voice;
+
+
+
+    /**
+     * お客様の声への返信を登録した従業員
+     */
+    @ManyToOne
     @JoinColumn(name = JpaConst.REP_COL_EMP, nullable = false)
     private Customer customer;
 

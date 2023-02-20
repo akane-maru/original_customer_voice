@@ -52,4 +52,9 @@ public class VoiceView {
      * 更新日時
      */
     //private LocalDateTime updatedAt;
+
+
+
+
+
 }

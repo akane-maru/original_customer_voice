@@ -12,7 +12,7 @@ public enum MessageConst {
 
     //DB更新
     I_REGISTERED("登録が完了しました。"),
-    I_REGISTERED_NEW("新規登録が完了しました。ようこそ！"),
+    I_REGISTERED_NEW("新規登録が完了しました。ようこそ！　ログインから始めてください。"),
     I_UPDATED("更新が完了しました。"),
     I_DELETED("削除が完了しました。"),
 

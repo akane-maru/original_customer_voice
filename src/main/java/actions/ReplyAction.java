@@ -109,6 +109,7 @@ public class ReplyAction extends ActionBase {
             //パラメータの値をもとに返信情報のインスタンスを作成する
             ReplyView rv = new ReplyView(
                     null,
+                    null,
                     cv, //ログインしている従業員を、返信作成者として登録する
                     day,
                     getRequestParam(AttributeConst.REP_TITLE),
