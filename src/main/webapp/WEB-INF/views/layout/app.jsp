@@ -29,16 +29,13 @@
                 <h1><a href="<c:url value='/?action=${actTop}&command=${commIdx}' />">お客様の声　投稿サイト</a></h1>&nbsp;&nbsp;&nbsp;
                 <c:if test="${sessionScope.login_customer != null}">
 
-                    <c:if test="${sessionScope.login_customer.adminFlag == AttributeConst.ROLE_ADMIN.getIntegerValue()}">
-                        <a href="<c:url value='?action=${actRep}&command=${commIdx}' />">お客様の声返信履歴</a>&nbsp;
-                    </c:if>
-
                     <c:if test="${sessionScope.login_customer.deleteFlag == AttributeConst.DEL_FLAG_FALSE.getIntegerValue()}">
 
                         <a href="<c:url value='?action=${actCus}&command=${commShow}&id=${sessionScope.login_customer.id}' />">アカウント管理</a>&nbsp;
 
                     </c:if>
-                    <a href="<c:url value='?action=${actVoi}&command=${commIdx}' />">皆様の声 一覧</a>&nbsp;
+                    <a href="<c:url value='?action=${actVoi}&command=${commIdx}' />">皆様の声　一覧</a>&nbsp;
+                    <a href="<c:url value='?action=${actRep}&command=${commIdx}' />">声への返信　一覧</a>&nbsp;
                 </c:if>
             </div>
             <c:if test="${sessionScope.login_customer != null}">

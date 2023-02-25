@@ -6,6 +6,7 @@
 <c:set var="actTop" value="${ForwardConst.ACT_TOP.getValue()}" />
 <c:set var="actCus" value="${ForwardConst.ACT_CUS.getValue()}" />
 <c:set var="actVoi" value="${ForwardConst.ACT_VOI.getValue()}" />
+<c:set var="actRep" value="${ForwardConst.ACT_REP.getValue()}" />
 
 <c:set var="commShow" value="${ForwardConst.CMD_SHOW.getValue()}" />
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
@@ -33,11 +34,16 @@
                 <c:forEach var="voice" items="${voice}" varStatus="status">
                     <fmt:parseDate value="${voice.voiceDate}" pattern="yyyy-MM-dd" var="voiceDay" type="date" />
                     <tr class="row${status.count % 2}">
+
                         <td class="voice_name"><c:out value="${voice.customer.name}" /></td>
                         <td class="voice_date"><fmt:formatDate value='${voiceDay}' pattern='yyyy-MM-dd' /></td>
                         <td class="voice_age"><c:out value="${voice.customer.age}" /></td>
                         <td class="voice_gender"><c:out value="${voice.customer.gender}" /></td>
                         <td class="voice_title">${voice.title}</td>
+
+
+
+
                         <td class="voice_action"><a href="<c:url value='?action=${actVoi}&command=${commShow}&id=${voice.id}' />">内容を見る</a></td>
                     </tr>
                 </c:forEach>

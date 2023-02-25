@@ -28,6 +28,12 @@
                     <fmt:parseDate value="${voice.voiceDate}" pattern="yyyy-MM-dd" var="voiceDay" type="date" />
                     <td><fmt:formatDate value='${voiceDay}' pattern='yyyy-MM-dd' /></td>
                 </tr>
+
+                <tr>
+                    <th>タイトル</th>
+                    <td><pre><c:out value="${voice.title}" /></pre></td>
+                </tr>
+
                 <tr>
                     <th>内容</th>
                     <td><pre><c:out value="${voice.content}" /></pre></td>
@@ -41,20 +47,23 @@
             </tbody>
         </table>
 
+        <br /><br />
+        <h3>お客様の貴重なお声を投稿していただき、誠にありがとうございます。</h3>
+        <h3>カスタマーサポートからこの声への返信が登録されるまで、今しばらくお待ちください。</h3>
+        <h3>返信が登録されると【<a href="<c:url value='?action=${actRep}&command=${commIdx}' />">声への返信　一覧</a>&nbsp;】に表示されますので、お手数ですがそちらからご確認ください。</h3>
 
-
-<br /><br />
+<!--  <br /><br />
         <h3>お客様の声への返信 内容</h3>
 
 
         <table>
-            <tbody>
+            <tbody>-->
 
 
                     <!--<fmt:parseDate value="${reply.replyDate}" pattern="yyyy-MM-dd" var="replyDay" type="date" />
                     <tr class="row${status.count % 2}">-->
 
-
+<!--
                 <tr>
                     <th>氏名</th>
                     <td><c:out value="${reply.customer.name}" /></td>
@@ -82,7 +91,9 @@
             </tbody>
         </table>
         <br /><br />
+-->
 
+        <br /><br />
         <p>
             <a href="<c:url value='?action=${actVoi}&command=${commIdx}' />">一覧に戻る</a>
         </p>

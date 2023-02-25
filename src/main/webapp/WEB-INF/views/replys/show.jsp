@@ -15,6 +15,44 @@
 
         <h2>お客様の声への返信 詳細ページ</h2>
 
+
+<h3>お客様の声 詳細</h3>
+
+        <table>
+            <tbody>
+                <tr>
+                    <th>氏名</th>
+                    <td><c:out value="${voice.customer.name}" /></td>
+                </tr>
+                <tr>
+                    <th>日付</th>
+                    <fmt:parseDate value="${voice.voiceDate}" pattern="yyyy-MM-dd" var="voiceDay" type="date" />
+                    <td><fmt:formatDate value='${voiceDay}' pattern='yyyy-MM-dd' /></td>
+                </tr>
+
+                <tr>
+                    <th>タイトル</th>
+                    <td><pre><c:out value="${voice.title}" /></pre></td>
+                </tr>
+
+                <tr>
+                    <th>内容</th>
+                    <td><pre><c:out value="${voice.content}" /></pre></td>
+                </tr>
+                <tr>
+                    <th>登録日時</th>
+                    <fmt:parseDate value="${voice.createdAt}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="createDay" type="date" />
+                    <td><fmt:formatDate value="${createDay}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+                </tr>
+
+            </tbody>
+        </table>
+
+
+<br /><br />
+
+<h3>声への返信 詳細</h3>
+
         <table>
             <tbody>
                 <tr>
@@ -26,6 +64,12 @@
                     <fmt:parseDate value="${reply.replyDate}" pattern="yyyy-MM-dd" var="replyDay" type="date" />
                     <td><fmt:formatDate value='${replyDay}' pattern='yyyy-MM-dd' /></td>
                 </tr>
+
+                <tr>
+                    <th>タイトル</th>
+                    <td><pre><c:out value="${reply.title}" /></pre></td>
+                </tr>
+
                 <tr>
                     <th>内容</th>
                     <td><pre><c:out value="${reply.content}" /></pre></td>
@@ -39,17 +83,10 @@
             </tbody>
         </table>
 
-        <form method="POST" action="<c:url value='?action=${actVoi}&command=${commCrt}' />">
-            <label for="${AttributeConst.REP_CONTENT.getValue()}">内容</label><br />
-            <textarea  name="${AttributeConst.REP_CONTENT.getValue()}" id="${AttributeConst.REP_CONTENT.getValue()}" rows="10" cols="50">${reply.content}</textarea>
-                <br /><br />
-                <input type="hidden" name="${AttributeConst.VOI_ID.getValue()}" value="${voice.id}" />
-                <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
 
-                <button type="submit">投稿</button>
-        </form>
+<br /><br />
 
-
+<h3>お客様の貴重なお声を投稿していただき、誠にありがとうございました。</h3>
 
         <p>
             <a href="<c:url value='?action=${actRep}&command=${commIdx}' />">一覧に戻る</a>

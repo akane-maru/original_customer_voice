@@ -167,7 +167,7 @@ public class ReplyAction extends ActionBase {
             putRequestScope(AttributeConst.VOICE, vv);
 
             //詳細画面を表示
-            forward(ForwardConst.FW_VOI_SHOW);
+            forward(ForwardConst.FW_REP_SHOW);
         }
     }
 

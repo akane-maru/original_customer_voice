@@ -150,7 +150,7 @@ public class CustomerAction extends ActionBase {
     public void show() throws ServletException, IOException {
 
         //管理者かどうかのチェック
-        if (checkAdmin()) {
+        //if (checkAdmin()) {
 
         //idを条件にお客様データを取得する
         CustomerView cv = service.findOne(toNumber(getRequestParam(AttributeConst.CUS_ID)));
@@ -168,7 +168,7 @@ public class CustomerAction extends ActionBase {
         forward(ForwardConst.FW_CUS_SHOW);
       }
 
-    }
+    //}
 
     /**
      * 編集画面を表示する

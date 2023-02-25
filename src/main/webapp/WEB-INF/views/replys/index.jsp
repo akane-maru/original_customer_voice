@@ -57,6 +57,5 @@
                 </c:choose>
             </c:forEach>
         </div>
-        <p><a href="<c:url value='?action=${actRep}&command=${commNew}' />">新規の返信を投稿する</a></p>
     </c:param>
 </c:import>
