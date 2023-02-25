@@ -137,6 +137,7 @@ public class ReplyService extends ServiceBase {
 
         em.getTransaction().begin();
         em.persist(ReplyConverter.toModel(rv));
+
         em.getTransaction().commit();
 
     }

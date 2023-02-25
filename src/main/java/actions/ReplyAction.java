@@ -8,12 +8,13 @@ import javax.servlet.ServletException;
 
 import actions.views.CustomerView;
 import actions.views.ReplyView;
+import actions.views.VoiceView;
 import constants.AttributeConst;
 import constants.ForwardConst;
 import constants.JpaConst;
 import constants.MessageConst;
 import services.ReplyService;
-
+import services.VoiceService;
 /**
  * お客様の声に関する処理を行うActionクラス
  *
@@ -21,6 +22,7 @@ import services.ReplyService;
 public class ReplyAction extends ActionBase {
 
     private ReplyService service;
+    private VoiceService voiceService;
 
     /**
      * メソッドを実行する
@@ -29,10 +31,12 @@ public class ReplyAction extends ActionBase {
     public void process() throws ServletException, IOException {
 
         service = new ReplyService();
+        voiceService = new VoiceService();
 
         //メソッドを実行
         invoke();
         service.close();
+        voiceService.close();
     }
 
     /**
@@ -105,11 +109,12 @@ public class ReplyAction extends ActionBase {
 
             //セッションからログイン中のお客様情報を取得
             CustomerView cv = (CustomerView) getSessionScope(AttributeConst.LOGIN_CUS);
+            //ReplyView rv = voiceService.findOne(toNumber(getRequestParam(AttributeConst.VOI_ID)));
 
             //パラメータの値をもとに返信情報のインスタンスを作成する
             ReplyView rv = new ReplyView(
                     null,
-                    null,
+                    voiceService.findOne(toNumber(getRequestParam(AttributeConst.VOI_ID))),
                     cv, //ログインしている従業員を、返信作成者として登録する
                     day,
                     getRequestParam(AttributeConst.REP_TITLE),
@@ -127,7 +132,7 @@ public class ReplyAction extends ActionBase {
                 putRequestScope(AttributeConst.ERR, errors);//エラーのリスト
 
                 //新規登録画面を再表示
-                forward(ForwardConst.FW_REP_NEW);
+                forward(ForwardConst.FW_VOI_SHOW);
 
             } else {
                 //登録中にエラーがなかった場合
@@ -136,7 +141,7 @@ public class ReplyAction extends ActionBase {
                 putSessionScope(AttributeConst.FLUSH, MessageConst.I_REGISTERED.getMessage());
 
                 //一覧画面にリダイレクト
-                redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
+                redirect(ForwardConst.ACT_VOI, ForwardConst.CMD_INDEX);
             }
         }
     }
@@ -150,6 +155,7 @@ public class ReplyAction extends ActionBase {
 
         //idを条件に返信データを取得する
         ReplyView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
+        VoiceView vv = voiceService.findOne(toNumber(getRequestParam(AttributeConst.VOI_ID)));
 
         if (rv == null) {
             //該当の返信データが存在しない場合はエラー画面を表示
@@ -158,11 +164,16 @@ public class ReplyAction extends ActionBase {
         } else {
 
             putRequestScope(AttributeConst.REPLY, rv); //取得した返信データ
+            putRequestScope(AttributeConst.VOICE, vv);
 
             //詳細画面を表示
-            forward(ForwardConst.FW_REP_SHOW);
+            forward(ForwardConst.FW_VOI_SHOW);
         }
     }
+
+
+
+
 
     /**
      * 編集画面を表示する

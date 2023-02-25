@@ -81,7 +81,6 @@ public class CustomerAction extends ActionBase {
         //管理者かどうかのチェック
         //if (checkAdmin()) {
 
-       System.out.println("reply");
         putRequestScope(AttributeConst.TOKEN, getTokenId()); //CSRF対策用トークン
         putRequestScope(AttributeConst.CUSTOMER, new CustomerView()); //空のお客様インスタンス
 
@@ -101,7 +100,6 @@ public class CustomerAction extends ActionBase {
         //CSRF対策 tokenのチェック
         //if (checkAdmin() && checkToken()) {
 
-        System.out.println("!!!!!!!!!!!!!!");
             //パラメータの値を元にお客様情報のインスタンスを作成する
             CustomerView cv = new CustomerView(
                     null,

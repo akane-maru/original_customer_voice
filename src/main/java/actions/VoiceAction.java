@@ -7,11 +7,13 @@ import java.util.List;
 import javax.servlet.ServletException;
 
 import actions.views.CustomerView;
+import actions.views.ReplyView;
 import actions.views.VoiceView;
 import constants.AttributeConst;
 import constants.ForwardConst;
 import constants.JpaConst;
 import constants.MessageConst;
+import services.ReplyService;
 import services.VoiceService;
 
 /**
@@ -22,6 +24,8 @@ public class VoiceAction extends ActionBase {
 
     private VoiceService service;
 
+    private ReplyService replyService;
+
     /**
      * メソッドを実行する
      */
@@ -29,10 +33,12 @@ public class VoiceAction extends ActionBase {
     public void process() throws ServletException, IOException {
 
         service = new VoiceService();
+        replyService = new ReplyService();
 
         //メソッドを実行
         invoke();
         service.close();
+        replyService.close();
     }
 
     /**
@@ -150,6 +156,8 @@ public class VoiceAction extends ActionBase {
         //idを条件に声データを取得する
         VoiceView vv = service.findOne(toNumber(getRequestParam(AttributeConst.VOI_ID)));
 
+        ReplyView rv = replyService.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
+
         if (vv == null) {
             //該当の声データが存在しない場合はエラー画面を表示
             forward(ForwardConst.FW_ERR_UNKNOWN);
@@ -158,10 +166,21 @@ public class VoiceAction extends ActionBase {
 
             putRequestScope(AttributeConst.VOICE, vv); //取得した声データ
 
+            putRequestScope(AttributeConst.REPLY, rv);
+
+            putRequestScope(AttributeConst.TOKEN, getTokenId()); //CSRF対策用トークン
+
+
             //詳細画面を表示
             forward(ForwardConst.FW_VOI_SHOW);
         }
     }
+
+
+
+
+
+
 
     /**
      * 編集画面を表示する
